@@ -1,0 +1,155 @@
+body {
+    background-color: #e5e7eb;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    height: 100vh;
+}
+.antialiased {
+    webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    background-color: #fff;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    width: 25%;
+}
+
+form section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+form section img {
+    margin-top: 1rem;
+    width:50%
+}
+
+.input-container {
+    width: 100%;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group:nth-child(1) {
+    margin-bottom: 2rem;
+}
+
+.input-group input[type="email"],
+.input-group input[type="password"],
+.input-group input[type="text"] {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-right-width: 0;
+    width: 100%;
+    padding: .45rem;
+    height: 2.2rem;
+    border: none;
+}
+
+.input-group div {
+    display: flex;
+    align-items: center;
+    /* width: 100%; */
+}
+
+
+.input-group span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    height: 2.2rem;
+    background-color: #2f515f;
+    width: 2.8rem;
+}
+
+.input-group span img {
+    height: 22px;
+}
+
+.input-container button {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    background-color: #2f515f;
+    color: #fff;
+    height: 2.4rem;
+    margin-top: 1.3rem;
+    transition: .3s all ease;
+    cursor: pointer;
+}
+
+.input-container button:hover {
+    opacity: .8;
+}
+
+aside {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width: 75%;
+}
+
+aside img {
+    width: 55%;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.checkbox {
+    margin-top: 8px;
+    gap: 5px;
+}
+
+input[type="checkbox"] {
+    height: 18px;
+    width: 18px;
+}
+
+#caps {
+    font-size: 12px;
+    display: none;
+    font-weight: 600;
+    color: red;
+}
+
+@media screen and (max-width: 1280px) {
+    form section img {
+        width: 150px !important;
+    }
+    aside {
+        width: 40% !important;
+    }
+    form {
+        width: 60% !important;
+    }
+
+}
+@media screen and (max-width: 769px) {
+    aside {
+        display: none !important;
+    }
+    form section img {
+        width: 40% !important;
+    }
+    form {
+        width: 100% !important;
+    }
+
+}

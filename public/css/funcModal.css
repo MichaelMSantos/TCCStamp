@@ -1,0 +1,51 @@
+/* Modal camisetas  */
+.modal-body {
+    display: flex !important;
+    align-items: center !important;
+    flex-direction: column !important;
+    gap: .9rem;
+}
+.input-content {
+    display: flex;
+    width: 100%;
+    gap: .9rem;
+    margin-bottom: .65rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+#codigo, select, .input-group input {
+    padding: 0 .5em ;
+    border: 1px solid #838282 !important;
+    border-radius: 6px !important;
+    height: 2rem;
+}
+
+label {
+    font-weight: 600;
+    color: #444444;
+}
+
+#quantidade {
+    width: 100%;
+}
+
+#codigo {
+    width: 60%;
+}
+
+.option-group {
+    display: flex;
+    gap: .7rem;
+}
+
+#scanner {
+    padding: 0 .4rem;
+    border: solid 2px #383838;
+    border-radius: 6px;
+    width: 25% !important;
+}
