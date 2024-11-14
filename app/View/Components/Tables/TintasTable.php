@@ -9,9 +9,11 @@ use Illuminate\View\Component;
 class TintasTable extends Component
 {
     public $tintas;
-    public function __construct($tintas)
+    public $fornecedores;
+    public function __construct($tintas, $fornecedores)
     {
         $this->tintas = $tintas;
+        $this->fornecedores = $fornecedores;
     }
 
     public function render(): View|Closure|string

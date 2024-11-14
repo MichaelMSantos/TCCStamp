@@ -18,7 +18,7 @@
                         <th>{{ $tinta->marca }}</th>
                         <th>{{ $tinta->cor }}</th>
                         <th>{{ $tinta->quantidade }}</th>
-                        <th>{{ $tinta->capacidade }}</th>
+                        <th>{{ $tinta->capacidade }}{{ $tinta->unidade_tinta }}</th>
                         <td class="acoes">
                             <a href="#" class="acao" data-bs-toggle="modal"
                                 data-bs-target="#update-{{ $tinta->id }}">
@@ -39,7 +39,10 @@
                         </td>
                     </tr>
 
-                    @include('estoque.tinta.tinta-update', ['tinta' => $tinta])
+                    @include('estoque.tinta.tinta-update', [
+                        'tinta' => $tinta,
+                        'fornecedores' => $fornecedores,
+                    ])
                     @include('estoque.tinta.tinta-destroy', ['tinta' => $tinta])
                     @include('pages.modal.barcode', ['item' => $tinta])
                 @endforeach

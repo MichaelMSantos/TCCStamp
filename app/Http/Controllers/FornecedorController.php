@@ -17,11 +17,19 @@ class FornecedorController extends Controller
     }
     public function store(Request $request)
     {
+
+        $request->validate([
+            'nome' => 'required',
+            'email' => 'required',
+            'endereco' => 'required',
+            'whatsapp' => 'required',
+        ]);
+
         $fornecedores = new Fornecedor;
 
         $fornecedores->id = $request->id;
         $fornecedores->nome = $request->nome;
-        $fornecedores->telefone = $request->telefone;
+        $fornecedores->email = $request->email;
         $fornecedores->endereco = $request->endereco;
         $fornecedores->whatsapp = $request->whatsapp;
 

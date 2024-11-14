@@ -30,7 +30,8 @@
                                 data-bs-target="#delete-{{ $camiseta->id }}">
                                 <i class="bi bi-trash"></i>
                             </a>
-                            <a href="{{ route('pdf.camiseta-unica', $camiseta->codigo) }}" target="_blank" class="acao">
+                            <a href="{{ route('pdf.camiseta-unica', $camiseta->codigo) }}" target="_blank"
+                                class="acao">
                                 <i class="bi bi-filetype-pdf"></i>
                             </a>
                             <a href="#" class="modal-trigger acao" data-bs-toggle="modal"
@@ -40,7 +41,10 @@
                         </td>
                     </tr>
 
-                    @include('estoque.camiseta.camiseta-update', ['camiseta' => $camiseta])
+                    @include('estoque.camiseta.camiseta-update', [
+                        'camiseta' => $camiseta,
+                        'fornecedores' => $fornecedores,
+                    ])
                     @include('estoque.camiseta.camiseta-destroy', ['camiseta' => $camiseta])
                     @include('pages.modal.barcode', ['item' => $camiseta])
                 @endforeach

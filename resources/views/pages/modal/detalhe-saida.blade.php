@@ -22,13 +22,13 @@
                         <p>Quantidade: {{ $saida->quantidade ?? 'N/A' }}</p>
                         <p>Fornecedor: {{ $saida->fornecedor->nome ?? 'N/A' }}</p>
                     @elseif ($tipo === 'Tecido')
-                        <p>Medida: {{ $detalhes->medida ?? 'N/A' }}</p>
+                        <p>Medida: {{ $detalhes->medida ?? 'N/A' }}{{ $detalhes->unidade ?? 'N/A' }}</p>
                         <p>Cor: {{ $detalhes->cor ?? 'N/A' }}</p>
                         <p>Quantidade: {{ $saida->quantidade ?? 'N/A' }}</p>
                         <p>Fornecedor: {{ $saida->fornecedor->nome ?? 'N/A' }}</p>
                     @elseif ($tipo === 'Tinta')
                         <p>Cor: {{ $detalhes->cor ?? 'N/A' }}</p>
-                        <p>Capacidade: {{ $detalhes->capacidade ?? 'N/A' }}</p>
+                        <p>Capacidade: {{ $detalhes->capacidade ?? 'N/A' }}{{ $detalhes->unidade_tinta ?? 'N/A' }}</p>
                         <p>Quantidade: {{ $saida->quantidade ?? 'N/A' }} </p>
                         <p>Fornecedor: {{ $saida->fornecedor->nome ?? 'N/A' }}</p>
                     @endif

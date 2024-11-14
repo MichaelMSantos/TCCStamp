@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->biginteger('codigo')->unique();
             $table->string('medida', 200)->nullable();
+            $table->string('unidade')->nullable();
             $table->string('cor', 30);
             $table->integer('quantidade');
             $table->string('barcode_image')->nullable();

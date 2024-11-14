@@ -13,7 +13,7 @@
             <li class="breadcrumb-item active" aria-current="page">Tintas</li>
         </ol>
     </nav>
-    
+
     <x-estoque-card-component tipoTabela="tintas" />
 
     <div class="table-group">
@@ -35,7 +35,7 @@
         <input type="text" id="pesquisar" placeholder="Pesquisar tintas..." class="form-control mb-3">
 
         <div id="resultado-tintas">
-            <x-tables.tintas-table :tintas="$tintas" />
+            <x-tables.tintas-table :tintas="$tintas" :fornecedores="$fornecedores" />
             {{ $tintas->links('pagination::bootstrap-5') }}
         </div>
     </div>

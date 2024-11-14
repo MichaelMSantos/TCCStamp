@@ -44,6 +44,8 @@
 
     <!-- Styles -->
     @livewireStyles
+
+    <script src="https://cdn.jsdelivr.net/npm/inputmask/dist/inputmask.min.js"></script>
 </head>
 
 <body>

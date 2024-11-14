@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
 
         Fornecedor::factory()->create([
             'nome' => 'Fornecedor1',
-            'telefone' => '11 12345-1234',
             'endereco' => 'Rua ABC',
             'email' => 'fornecedor@teste.com',
             'whatsapp' => '1922393332',

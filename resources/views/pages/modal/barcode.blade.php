@@ -15,3 +15,4 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/download-barcode.js') }}"></script>

@@ -31,12 +31,20 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'unique:users,email,' . $request->id], 
+            'email' => ['required', 'unique:users,email,' . $request->id],
             'cpf' => 'required',
             'name' => 'required',
         ]);
 
-        User::findOrFail($request->id)->update($request->all());
+        $funcionario = User::findOrFail($request->id);
+        $funcionario->email = $request->input('email');
+        $funcionario->name = $request->input('name');
+        $funcionario->cpf = $request->input('cpf');
+
+        if ($request->filled('password')) {
+            $funcionario->password = bcrypt($request->input('password'));
+        }
+        $funcionario->save();
 
         return back()->with('sucesso', 'Funcionário atualizado com sucesso!');
     }

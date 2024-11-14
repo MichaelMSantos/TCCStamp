@@ -57,6 +57,19 @@
                             </select>
                         </div>
                     </div>
+                    <div class="input-group">
+                        <label for="fornecedor">Fornecedor</label>
+                        <select name="fornecedor" id="fornecedor">
+                            <option value="{{ $camiseta->fornecedor_id }}">
+                                {{ $camiseta->fornecedor ? $camiseta->fornecedor->nome : 'Selecionar fornecedor' }}
+                            </option>
+                            @foreach ($fornecedores as $fornecedor)
+                                <option value="{{ $fornecedor->id }}">
+                                    {{ $fornecedor->nome }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

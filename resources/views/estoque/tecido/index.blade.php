@@ -34,7 +34,7 @@
         <input type="text" id="pesquisar" placeholder="Pesquisar tecidos..." class="form-control mb-3">
 
         <div id="resultado-tecidos">
-            <x-tables.tecidos-table :tecidos="$tecidos" />
+            <x-tables.tecidos-table :tecidos="$tecidos" :fornecedores="$fornecedores"/>
         </div>
         {{ $tecidos->links('pagination::bootstrap-5') }}
     </div>

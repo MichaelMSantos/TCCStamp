@@ -15,7 +15,7 @@
         <tbody>
             <tr>
                 <th scope="row">{{ $tecido->codigo }}</th>
-                <th>{{ $tecido->medida }}</th>
+                <th>{{ $tecido->medida }}{{ $tecido->unidade }}</th>
                 <th>{{ $tecido->cor }}</th>
                 <th>{{ $tecido->quantidade }}</th>
                 <th>{{ $tecido->created_at->format('d/m/Y   ') }}</th>

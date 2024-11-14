@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('cor', 30)->nullable();
             $table->integer('quantidade');
             $table->string('capacidade');
+            $table->string('unidade_tinta');
             $table->string('barcode_image')->nullable();
             $table->unsignedBigInteger('fornecedor_id')->nullable();
 

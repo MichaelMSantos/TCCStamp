@@ -10,20 +10,27 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <label for="codigo">Email</label>
+                    <label for="email">Email</label>
                     <div class="input-content">
                         <input type="text" name="email" id="email" value="{{ $funcionario->email }}">
                     </div>
                     <div class="input-content">
                         <div class="input-group">
-                            <label for="modelo">Nome</label>
+                            <label for="name">Nome</label>
                             <input type="text" name="name" id="nome" value="{{ $funcionario->name }}">
                         </div>
                         <div class="option-group">
                             <div class="input-group">
-                                <label for="CPF">CPF</label>
-                                <input name="cpf" id="cpf" value="{{ $funcionario->cpf }}">
+                                <label for="cpf">CPF</label>
+                                <input type="text" name="cpf" id="cpf" value="{{ $funcionario->cpf }}">
                             </div>
+                        </div>
+                    </div>
+                    <div class="input-content">
+                        <div class="input-group">
+                            <label for="password">Nova Senha</label>
+                            <input type="password" name="password" id="password"
+                                placeholder="Deixe em branco para não alterar">
                         </div>
                     </div>
                 </div>

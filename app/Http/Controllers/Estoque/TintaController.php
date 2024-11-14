@@ -30,7 +30,8 @@ class TintaController extends Controller
             'marca' => 'required',
             'cor' => 'required',
             'quantidade' => 'required|integer',
-            'capacidade' => 'required'
+            'capacidade' => 'required',
+            'unidade' => 'required'
         ]);
 
         if (empty($request->codigo)) {
@@ -57,19 +58,24 @@ class TintaController extends Controller
         $tintas->cor = $request->cor;
         $tintas->quantidade = $request->quantidade;
         $tintas->capacidade = $request->capacidade;
+        $tintas->unidade_tinta = $request->unidade;
         $tintas->fornecedor_id = $request->fornecedor;
 
-        $barcodeUrl = "https://barcode.tec-it.com/barcode.ashx?data={$tintas->codigo}&code=Code128&translate-esc=on&filetype=png";
+        $tintas->save();
 
+        $barcodeUrl = "https://barcode.tec-it.com/barcode.ashx?data={$tintas->codigo}&code=Code128&translate-esc=on&filetype=png";
         $response = Http::get($barcodeUrl);
 
         if ($response->successful()) {
-            $path = 'barcodes/' . $tintas->codigo . '.png';
+            $directory = public_path('barcodes');
+            $path = $directory . '/' . $tintas->codigo . '.png';
 
-            Storage::disk('public')->put($path, $response->body());
+            if (!is_dir($directory)) {
+                mkdir($directory, 0755, true);
+            }
 
-
-            $tintas->barcode_image = $path;
+            file_put_contents($path, $response->body());
+            $tintas->barcode_image = 'barcodes/' . $tintas->codigo . '.png';
             $tintas->save();
         }
 
@@ -90,19 +96,50 @@ class TintaController extends Controller
 
     public function update(Request $request)
     {
-
         $request->validate([
             'codigo' => ['required', 'unique:tintas,codigo,' . $request->id],
             'marca' => 'required',
             'cor' => 'required',
             'quantidade' => 'required|integer',
-            'capacidade' => 'required'
+            'capacidade' => 'required',
+            'unidade' => 'required'
         ]);
 
-        $tinta = Tinta::all();
+        $tinta = Tinta::findOrFail($request->id);
 
-        Tinta::findOrFail($request->id)->update($request->all());
+        if ($tinta->codigo !== $request->codigo) {
+            $codigoAntigo = $tinta->codigo;
+            $tinta->codigo = $request->codigo;
+            $oldBarcodePath = public_path('barcodes/' . $codigoAntigo . '.png');
+            if (file_exists($oldBarcodePath)) {
+                unlink($oldBarcodePath);
+            }
 
+            $barcodeUrl = "https://barcode.tec-it.com/barcode.ashx?data={$tinta->codigo}&code=Code128&translate-esc=on&filetype=png";
+            $response = Http::get($barcodeUrl);
+
+            if ($response->successful()) {
+                $directory = public_path('barcodes');
+                $path = $directory . '/' . $tinta->codigo . '.png';
+                if (!is_dir($directory)) {
+                    mkdir($directory, 0755, true);
+                }
+
+                file_put_contents($path, $response->body());
+                $tinta->barcode_image = 'barcodes/' . $tinta->codigo . '.png';
+            }
+        }
+
+        // Atualizando os demais campos
+        $tinta->codigo = $request->codigo;
+        $tinta->marca = $request->marca;
+        $tinta->cor = $request->cor;
+        $tinta->quantidade = $request->quantidade;
+        $tinta->capacidade = $request->capacidade;
+        $tinta->unidade_tinta = $request->unidade;
+        $tinta->fornecedor_id = $request->fornecedor;
+
+        $tinta->save();
 
         return back()->with('sucesso', 'Tinta atualizada com sucesso!');
     }

@@ -68,19 +68,14 @@ class CamisetaController extends Controller
         $response = Http::get($barcodeUrl);
 
         if ($response->successful()) {
-            // Caminho completo para o arquivo
             $directory = public_path('barcodes');
             $path = $directory . '/' . $camiseta->codigo . '.png';
 
-            // Verifica se o diretório 'public/barcodes' existe, caso contrário, cria-o
             if (!is_dir($directory)) {
                 mkdir($directory, 0755, true);
             }
 
-            // Salva o conteúdo da imagem no diretório
             file_put_contents($path, $response->body());
-
-            // Atualiza o caminho da imagem no modelo
             $camiseta->barcode_image = 'barcodes/' . $camiseta->codigo . '.png';
             $camiseta->save();
         }
@@ -107,13 +102,44 @@ class CamisetaController extends Controller
             'categoria' => 'required'
         ]);
 
-        $camisetas = Camiseta::all();
+        $camiseta = Camiseta::findOrFail($request->id);
 
-        Camiseta::findOrFail($request->id)->update($request->all());
+        if ($camiseta->codigo !== $request->codigo) {
+            $codigoAntigo = $camiseta->codigo;
 
+            $camiseta->codigo = $request->codigo;
+            $oldBarcodePath = public_path('barcodes/' . $codigoAntigo . '.png');
+            if (file_exists($oldBarcodePath)) {
+                unlink($oldBarcodePath);
+            }
+
+            $barcodeUrl = "https://barcode.tec-it.com/barcode.ashx?data={$camiseta->codigo}&code=Code128&translate-esc=on&filetype=png";
+            $response = Http::get($barcodeUrl);
+
+            if ($response->successful()) {
+                $directory = public_path('barcodes');
+                $path = $directory . '/' . $camiseta->codigo . '.png';
+                if (!is_dir($directory)) {
+                    mkdir($directory, 0755, true);
+                }
+
+                file_put_contents($path, $response->body());
+                $camiseta->barcode_image = 'barcodes/' . $camiseta->codigo . '.png';
+            }
+        }
+
+        $camiseta->modelo = $request->modelo;
+        $camiseta->tamanho = $request->tamanho;
+        $camiseta->cor = $request->cor;
+        $camiseta->quantidade = $request->quantidade;
+        $camiseta->categoria = $request->categoria;
+        $camiseta->fornecedor_id = $request->fornecedor;
+
+        $camiseta->save();
 
         return back()->with('sucesso', 'Camiseta atualizada com sucesso!');
     }
+
 
     // Delete
     public function destroy($id)
@@ -130,28 +156,5 @@ class CamisetaController extends Controller
         $camiseta->delete();
 
         return redirect()->route('camiseta.index')->with('sucesso', 'Camiseta excluida com sucesso!');
-    }
-
-    public function pdfGeral()
-    {
-        $camisetas = Camiseta::all();
-
-        $pdf = PDF::loadView('relatorios.camiseta-geral_pdf', [
-            'camisetas' => $camisetas,
-        ]);
-
-        return $pdf->stream('camiseta-relatorio.pdf');
-    }
-
-    public function unicoPdf($codigo)
-    {
-        $camiseta = Camiseta::where('codigo', $codigo)->firstOrFail();
-
-        $pdf = PDF::loadView(
-            'relatorios.camiseta',
-            ['camiseta' => $camiseta]
-        );
-
-        return $pdf->stream('camiseta-relatorio.pdf');
     }
 }

@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="input-group">
                         <label for="nome">Nome</label>
-                        <input type="text" name="nome" id="nome"">
+                        <input type="text" name="nome" id="nome">
                     </div>
                     <div class="input-content">
                         <div class="input-group">

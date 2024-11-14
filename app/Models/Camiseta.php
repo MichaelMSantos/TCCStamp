@@ -27,7 +27,7 @@ class Camiseta extends Model
         parent::boot();
 
         static::deleting(function ($camiseta) {
-            
+
             $camiseta->historicos()->delete();
         });
     }

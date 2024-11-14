@@ -14,7 +14,7 @@
                 @foreach ($tecidos as $tecido)
                     <tr>
                         <th scope="row">{{ $tecido->codigo }}</th>
-                        <th>{{ $tecido->medida }}</th>
+                        <th>{{ $tecido->medida }}{{ $tecido->unidade }}</th>
                         <th>{{ $tecido->cor }}</th>
                         <th>{{ $tecido->quantidade }}</th>
                         <td class="acoes">
@@ -37,7 +37,10 @@
                         </td>
                     </tr>
 
-                    @include('estoque.tecido.tecido-update', ['tecido' => $tecido])
+                    @include('estoque.tecido.tecido-update', [
+                        'tecido' => $tecido,
+                        'fornecedores' => $fornecedores,
+                    ])
                     @include('estoque.tecido.tecido-destroy', ['tecido' => $tecido])
                     @include('pages.modal.barcode', ['item' => $tecido])
                 @endforeach

@@ -36,7 +36,7 @@
 
 
         <div id="resultado-camisetas">
-            <x-tables.camisetas-table :camisetas="$camisetas" />
+            <x-tables.camisetas-table :camisetas="$camisetas" :fornecedores="$fornecedores" />
             {{ $camisetas->links('pagination::bootstrap-5') }}
         </div>
     </div>

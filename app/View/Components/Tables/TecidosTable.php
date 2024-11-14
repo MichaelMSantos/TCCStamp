@@ -8,10 +8,12 @@ use Illuminate\View\Component;
 
 class TecidosTable extends Component
 {
-   public $tecidos;
-    public function __construct($tecidos)
+    public $tecidos;
+    public $fornecedores;
+    public function __construct($tecidos, $fornecedores)
     {
         $this->tecidos = $tecidos;
+        $this->fornecedores = $fornecedores;
     }
 
     public function render(): View|Closure|string

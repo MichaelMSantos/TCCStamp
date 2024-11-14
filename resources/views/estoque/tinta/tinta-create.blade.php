@@ -38,10 +38,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-content">
-                        <div class="input-group">
-                            <label for="capacidade">Capacidade</label>
-                            <input type="text" name="capacidade" id="capacidade">
+                    <div class="input-content" style="flex-direction: column; gap: 0">
+                        <label for="medida">Capacidade</label>
+                        <div class="input-group" style="flex-direction: row;">
+                            <input type="number" name="capacidade" id="capacidade" min="0" step="any"
+                                required style="width: 83%">
+                            <div class="option-group">
+                                <select id="unidade" name="unidade" required>
+                                    <option value="L">L</option>
+                                    <option value="mL">mL</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="input-group">

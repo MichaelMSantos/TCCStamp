@@ -18,7 +18,7 @@
                 <th>{{ $tinta->marca }}</th>
                 <th>{{ $tinta->cor }}</th>
                 <th>{{ $tinta->quantidade }}</th>
-                <th>{{ $tinta->capacidade }}</th>
+                <th>{{ $tinta->capacidade }}{{ $tinta->unidade_tinta }}</th>
             </tr>
         </tbody>
     </table>

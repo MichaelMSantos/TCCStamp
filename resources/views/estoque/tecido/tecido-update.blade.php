@@ -14,16 +14,31 @@
                     <div class="input-content">
                         <input type="text" name="codigo" id="codigo" value="{{ $tecido->codigo }}">
                     </div>
+                    <div class="input-content" style="flex-direction: column; gap: 0">
+                        <label for="medida">Medida</label>
+                        <div class="input-group" style="flex-direction: row;">
+                            <input type="number" name="medida_valor" id="medida_valor" min="0" step="any"
+                                required style="width: 80%" value="{{ $tecido->medida }}">
+                            <div class="option-group">
+                                <select id="medida_unidade" name="medida_unidade" required>
+                                    <option value="{{ $tecido->unidade }}">{{ $tecido->unidade }}</option>
+                                    <option value="cm">cm</option>
+                                    <option value="m">m</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="input-content">
                         <div class="input-group">
-                            <label for="medida">Medida</label>
-                            <input type="text" name="medida" id="medida" value="{{ $tecido->medida }}">
+                            <label for="quantidade">Quantidade</label>
+                            <input type="text" name="quantidade" id="quantidade" value={{ $tecido->quantidade }}>
                         </div>
                         <div class="option-group">
                             <div class="input-group">
                                 <label for="cor">Cor</label>
-                                <select name="cor" id="cor" value=>
+                                <select name="cor" id="cor">
                                     <option value="{{ $tecido->cor }}">{{ $tecido->cor }}</option>
+                                    <option value="Branco">Branco</option>
                                     <option value="Preto">Preto</option>
                                     <option value="Amarelo">Amarelo</option>
                                     <option value="Vermelho">Vermelho</option>
@@ -32,11 +47,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-content">
-                        <div class="input-group">
-                            <label for="quantidade">Quantidade</label>
-                            <input type="text" name="quantidade" id="quantidade" value="{{ $tecido->quantidade }}">
-                        </div>
+                    <div class="input-group">
+                        <label for="fornecedor">Fornecedor</label>
+                        <select name="fornecedor" id="fornecedor">
+                            @if ($fornecedores->count() > 0)
+                                <option value="">Nenhum</option>
+                                @foreach ($fornecedores as $fornecedor)
+                                    <option value="{{ $fornecedor->id }}"> {{ $fornecedor->nome }} </option>
+                                @endforeach
+                            @else
+                                <option value="">Nenhum fornecedor encontrado.</option>
+                            @endif
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

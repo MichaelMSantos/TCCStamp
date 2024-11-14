@@ -90,7 +90,8 @@
                                     .categoria + '</p>';
                             } else if (response.tipo === 'tecido') {
                                 resultadoHtml += '<p><strong>Medida:</strong> ' + response
-                                    .medida + '</p>';
+                                    .medida + response
+                                    .unidade + '</p>';
                                 resultadoHtml += '<p><strong>Cor:</strong> ' + response.cor +
                                     '</p>';
                                 resultadoHtml += '<p><strong>Quantidade:</strong> ' + response
@@ -103,7 +104,8 @@
                                 resultadoHtml += '<p><strong>Quantidade:</strong> ' + response
                                     .quantidade + '</p>';
                                 resultadoHtml += '<p><strong>Capacidade:</strong> ' + response
-                                    .capacidade + '</p>';
+                                    .capacidade + response
+                                    .unidade_tinta + '</p>';
                             }
 
                             $('.resultado').html(resultadoHtml).css('display', 'flex');

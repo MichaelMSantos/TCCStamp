@@ -36,11 +36,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-content">
-                        <div class="input-group">
-                            <label for="capacidade">Capacidade</label>
-                            <input type="text" name="capacidade" id="capacidade" value="{{ $tinta->capacidade }}">
+                    <div class="input-content" style="flex-direction: column; gap: 0">
+                        <label for="capacidade">Capacidade</label>
+                        <div class="input-group" style="flex-direction: row;">
+                            <input type="number" name="capacidade" id="capacidade" min="0" step="any"
+                                required style="width: 83%" value="{{ $tinta->capacidade }}">
+                            <div class="option-group">
+                                <select id="unidade" name="unidade">
+                                    <option value="{{ $tinta->unidade_tinta }}">{{ $tinta->unidade_tinta }}</option>
+                                    <option value="L">L</option>
+                                    <option value="mL">mL</option>
+                                </select>
+                            </div>
                         </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="fornecedor">Fornecedor</label>
+                        <select name="fornecedor" id="fornecedor">
+                            <option value="{{ $tinta->fornecedor_id }}">
+                                {{ $tinta->fornecedor ? $tinta->fornecedor->nome : 'Selecionar fornecedor' }}
+                            </option>
+                            @foreach ($fornecedores as $fornecedor)
+                                <option value="{{ $fornecedor->id }}">
+                                    {{ $fornecedor->nome }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

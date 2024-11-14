@@ -17,10 +17,23 @@
                                 vazio para gerar um código aleatório</p>
                         </div>
                     </div>
+                    <div class="input-content" style="flex-direction: column; gap: 0">
+                        <label for="medida">Medida</label>
+                        <div class="input-group" style="flex-direction: row;">
+                            <input type="number" name="medida_valor" id="medida_valor" min="0" step="any"
+                                required style="width: 80%">
+                            <div class="option-group">
+                                <select id="medida_unidade" name="medida_unidade" required>
+                                    <option value="cm">cm</option>
+                                    <option value="m">m</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="input-content">
                         <div class="input-group">
-                            <label for="medida">Medida</label>
-                            <input type="text" name="medida" id="medida">
+                            <label for="quantidade">Quantidade</label>
+                            <input type="text" name="quantidade" id="quantidade">
                         </div>
                         <div class="option-group">
                             <div class="input-group">
@@ -35,22 +48,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-content">
-                        <div class="input-group">
-                            <label for="quantidade">Quantidade</label>
-                            <input type="text" name="quantidade" id="quantidade">
-                        </div>
-                    </div>
                     <div class="input-group">
-                        <label for="fornecedores">Fornecedor</label>
-                        @if (count($fornecedor) > 0)
-                            <option value="">Nenhum</option>
-                            @foreach ($fornecedores as $fornecedor)
-                                <option value="{{ $fornecedor->id }}">{{ $fornecedor->nome }}</option>
-                            @endforeach
-                        @else
-                            <option value="">Nenhum Fornecedor encontrado</option>
-                        @endif
+                        <label for="fornecedor">Fornecedor</label>
+                        <select name="fornecedor" id="fornecedor">
+                            @if (count($fornecedores) > 0)
+                                <option value="">Nenhum</option>
+                                @foreach ($fornecedores as $fornecedor)
+                                    <option value="{{ $fornecedor->id }}"> {{ $fornecedor->nome }} </option>
+                                @endforeach
+                            @else
+                                <option value=""> Nenhum fornecedor encontrado. </option>
+                            @endif
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

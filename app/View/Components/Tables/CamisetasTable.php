@@ -8,13 +8,15 @@ use Illuminate\View\Component;
 
 class CamisetasTable extends Component
 {
-
     public $camisetas;
-    public function __construct($camisetas)
+    public $fornecedores;
+
+    public function __construct($camisetas,  $fornecedores)
     {
         $this->camisetas = $camisetas;
-
+        $this->fornecedores = $fornecedores;
     }
+
     public function render(): View|Closure|string
     {
         return view('components.tables.camisetas-table');

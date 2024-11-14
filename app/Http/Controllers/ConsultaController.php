@@ -33,6 +33,7 @@ class ConsultaController extends Controller
             return response()->json([
                 'tipo' => 'tecido',
                 'medida' => $tecido->medida,
+                'unidade' => $tecido->unidade,
                 'cor' => $tecido->cor,
                 'quantidade' => $tecido->quantidade,
             ]);
@@ -43,6 +44,7 @@ class ConsultaController extends Controller
                 'cor' => $tinta->cor,
                 'quantidade' => $tinta->quantidade,
                 'capacidade' => $tinta->capacidade,
+                'unidade_tinta' => $tinta->unidade,
             ]);
         }
 

@@ -15,7 +15,7 @@
                     <tr>
                         <td>{{ $recent->codigo }}</td>
                         <td style="text-transform: capitalize">
-                            <a href="/dashboard/estoque/{{ $recent->origem }}">{{ $recent->origem }}</a>
+                            <a href="/dashboard/{{ $recent->origem }}">{{ $recent->origem }}</a>
                         </td>
                         <td>{{ $recent->quantidade }}</td>
                         <td>{{ $recent->fornecedor ?? 'Fornecedor não registrado' }}</td>
